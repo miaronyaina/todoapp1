@@ -1,0 +1,33 @@
+GET http://localhost:3000/todo HTTP/1.1
+
+#####
+
+GET http://localhost:3000/todo/jskf HTTP/1.1
+
+#####
+POST http://localhost:3000/todo/ HTTP/1.1
+Content-Type: application/json
+{
+    "username": "harbiola",
+    "email":"harbiola@gmail.com"
+}
+
+#####
+PUT http://localhost:3000/todo/xxxxx HTTP/1.1
+Content-Type: application/json
+{
+    "username": "abiola",
+    "email":"abiola@gmail.com",
+    "age":25
+} 
+
+#####
+POST http://localhost:3000/user/xxxxx HTTP/1.1
+Content-Type: application/json
+{
+    "username": "sandra",
+    "email":"sandra@gmail.com"
+}
+
+#####
+DELETE  http://localhost:3000/user/xxxxx HTTP/1.1

@@ -1,0 +1,60 @@
+<html>
+<head>
+    <title>To do List</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <link href="/assets/styles.css" rel="stylesheet" type="text/css" />
+    <body>
+        <h1>My TODO LIST</h1>
+        <div id="todo-table">
+            <form>
+                <input type="text" name="item" placeholder="Add New item..." required />
+                <button type="submit">Add Item</button>
+            </form>
+            <ul>
+                <% for(var i=0; i < todos.length; i++){ %>
+                <li><%= todos[i].item %></li>
+                <% } %>
+
+            </ul>
+
+        </div>
+
+    </body>
+<script>$(document).ready(function(){
+
+  $('form').on('submit', function(){
+
+      var item = $('form input');
+      var todo = {item: item.val()};
+
+      $.ajax({
+        type: 'POST',
+        url: '/todo',
+        data: todo,
+        success: function(data){
+          //do something with the data via front-end framework
+          location.reload();
+        }
+      });
+
+      return false;
+
+  });
+
+  $('li').on('click', function(){
+      var item = $(this).text().replace(/ /g, "-");
+      $.ajax({
+        type: 'DELETE',
+        url: '/todo/' + item,
+        success: function(data){
+          //do something with the data via front-end framework
+          location.reload();
+        }
+      });
+  });
+
+});
+
+</script>
+</head>
+</html>
